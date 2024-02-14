@@ -4,13 +4,18 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building the project...'
+                // Checkout the Git repository
+                git 'https://github.com/username/repository.git'
+                
+                // Build the Maven project
+                sh 'mvn clean package'
             }
         }
         
-        stage('Deploy') {
+        stage('Archive Artifacts') {
             steps {
-                echo 'Deploying the project...'
+                // Archive the generated JAR file as an artifact
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             }
         }
     }
