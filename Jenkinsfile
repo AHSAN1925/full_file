@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         DOCKER_IMAGE = 'nginx:latest'
-        CONTAINER_NAME = 'my-nginx-container'
+        CONTAINER_NAME = 'my-nginx-container1'
         PORT = 8080
     }
     
