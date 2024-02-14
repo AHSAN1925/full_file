@@ -9,6 +9,7 @@ pipeline {
                     sh 'docker ps'
                     sh 'docker images'
                     sh 'docker ps -a'
+                    sh'docker stop 3348'
                 }
             }
         }
