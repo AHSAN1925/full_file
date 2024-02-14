@@ -1,27 +1,16 @@
 pipeline {
     agent any
     
-    environment {
-        // Set Dockerfile location and image name
-        DOCKERFILE_PATH = 'Dockerfile'
-        IMAGE_NAME = 'my-docker-image'
-    }
-    
     stages {
-        stage('Build Docker Image') {
+        stage('List Running Containers') {
             steps {
                 script {
-                    // Build Docker image using Dockerfile
-                    docker.build IMAGE_NAME, "-f ${DOCKERFILE_PATH} ."
+                    // List running Docker containers
+                    sh 'docker ps'
+                    sh 'docker images'
+                    sh 'docker ps -a'
                 }
             }
         }
     }
-    
-    stage('Run Container') {
-            steps {
-                // Run Docker container
-                sh 'docker run -itd --name my-image my-docker-image'
-            }
-        }
 }
