@@ -2,33 +2,25 @@ pipeline {
     agent any
     
     environment {
-        DOCKER_IMAGE = 'nginx:latest'
-        CONTAINER_NAME = 'my-nginx-container123'
-        PORT = 8081
+        // Set Dockerfile location and image name
+        DOCKERFILE_PATH = 'Dockerfile'
+        IMAGE_NAME = 'my-docker-image'
     }
     
     stages {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build DOCKER_IMAGE, '.'
-                }
-            }
-        }
-        
-        stage('Run Docker Container') {
-            steps {
-                script {
-                    // Run Docker container from the built image
-                    def container = docker.image(DOCKER_IMAGE).run('-itd -p ${PORT}:80 --name ${CONTAINER_NAME}')
-                    
-                    // Show the logs of the running container
-                    container.inside {
-                        sh 'echo "Container is running..."'
-                        sh 'echo "Container ID: $(hostname)"'
-                    }
+                    // Build Docker image using Dockerfile
+                    docker.build IMAGE_NAME, "-f ${DOCKERFILE_PATH} ."
                 }
             }
         }
     }
+    stage('Run Container') {
+            steps {
+                // Run Docker container
+                sh 'docker run -itd --name my-image my-docker-image'
+            }
+        }
 }
