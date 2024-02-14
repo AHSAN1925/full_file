@@ -30,16 +30,5 @@ pipeline {
                 }
             }
         }
-        
-        stage('Show Container Logs') {
-            steps {
-                script {
-                    // Show logs of the running container
-                    docker.image(DOCKER_IMAGE).inside {
-                        sh 'docker logs ${CONTAINER_NAME}'
-                    }
-                }
-            }
-        }
     }
 }
