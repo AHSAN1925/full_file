@@ -1,6 +1,7 @@
 pipeline {
     agent any
-stages {
+    
+    stages {
         stage('Create Directory and File') {
             steps {
                 script {
@@ -16,3 +17,4 @@ stages {
             }
         }
     }
+}
