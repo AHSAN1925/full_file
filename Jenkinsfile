@@ -4,17 +4,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Build your project here
-                sh 'javac -d target src/Main.java'
-                sh 'jar cf target/my_project.jar -C target/ .'
-            }
-        }
-        
-        stage('Archive Artifacts') {
-            steps {
-                // Archive the generated artifact
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                script {
+                    // Print current directory
+                    sh 'pwd'
+                    // List contents of src directory
+                    sh 'ls -l src'
+                    // Compile Java file
+                    sh 'javac -d target src/Main.java'
+                }
             }
         }
     }
 }
+
