@@ -1,4 +1,5 @@
-#!/bin/bash
-
-mkdir ahsan
-touch file1.txt
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, world!");
+    }
+}
