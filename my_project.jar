@@ -1,0 +1,5 @@
+my_project/
+  |- src/
+      |- Main.java
+  |- target/
+      |- my_project.jar
